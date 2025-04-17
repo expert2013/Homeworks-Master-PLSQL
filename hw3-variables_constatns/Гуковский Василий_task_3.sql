@@ -3,10 +3,10 @@
 Вывод сообщений в буфер вывода с использованием процедуры: dbms_output.put_line().*/
 
 declare
-c_create number(1) := 0;
-c_success number(1) := 1;
-c_reset number(1) := 2;
-c_cancel number(1) := 3;
+c_create constant number(1) := 0;
+c_success constant number(1) := 1;
+c_reset constant number(1) := 2;
+c_cancel constant number(1) := 3;
 
 v_balance varchar2(50) := 'недостаточно средств'; 
 v_error varchar2(50) := 'ошибка пользователя';
