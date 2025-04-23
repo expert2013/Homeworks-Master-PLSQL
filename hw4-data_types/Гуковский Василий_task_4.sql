@@ -8,7 +8,8 @@ declare
    v_message varchar2(100 char) := 'Платеж создан';
    v_current_date    date := sysdate;
 begin
-  dbms_output.put_line(v_message ||'. Статус: '|| c_created || '. ' || to_char(v_current_date, 'yyyy-mm-dd'));
+  dbms_output.put_line(v_message ||'. Статус: '|| c_created);
+  dbms_output.put_line(to_char(v_current_date, 'yyyy-mm-dd'));
 end;
 /
 -- Сброс платежа в "ошибочный статус"
@@ -18,7 +19,8 @@ declare
    v_message varchar2(100 char) := 'Сброс платежа в "ошибочный статус" с указанием причины. Статус: '; 
    v_current_date    date := sysdate;
 begin
-  dbms_output.put_line(v_message || c_error ||'. Причина: '|| v_reason || '. '|| TO_CHAR(v_current_date, 'YYYY-MM-DD HH24:MI:SS'));
+  dbms_output.put_line(v_message || c_error ||'. Причина: '|| v_reason);
+  dbms_output.put_line(to_char(v_current_date, 'yyyy-mm-dd hh24:mi:ss'));
 end;
 /
 -- Отмена платежа с указанием причины
@@ -28,7 +30,8 @@ declare
    v_message varchar2(100 char) := 'Отмена платежа с указанием причины. Статус: ';
    v_current_date    date := sysdate;
 begin
-  dbms_output.put_line(v_message || c_cancel ||'. '|| v_reason || '. '|| TO_CHAR(v_current_date, 'DD/MON/YY HH24:MI:SS'));
+  dbms_output.put_line(v_message || c_cancel ||'. '|| v_reason);
+  dbms_output.put_line(to_char(v_current_date, 'dd/mon/yy hh24:mi:ss'));
 end;
 /
 -- Успешное завершение платежа
@@ -37,7 +40,8 @@ declare
    v_message           varchar2(100 char) := 'Успешное завершение платежа. Статус: ';
    v_current_timestamp timestamp := systimestamp;
 begin
-  dbms_output.put_line(v_message || c_success || '. '|| TO_CHAR(v_current_timestamp, 'DD/MM/YY HH24:MI:SS.SSSSS'));
+  dbms_output.put_line(v_message || c_success);
+  dbms_output.put_line(to_char(v_current_timestamp, 'dd/mm/yy hh24:mi:ss.sssss'));
 end;
 /
 -- Добавление или обновление платежа
@@ -45,7 +49,8 @@ declare
    v_message varchar2(100 char) := 'Данные платежа добавлены или обновлены по списку id_поля/значение';
    v_current_timestamp timestamp := systimestamp;
 begin
-  dbms_output.put_line(v_message || '. '|| TO_CHAR(v_current_timestamp,'YYYY-MM-DD HH24: MI: SS.FF'));
+  dbms_output.put_line(v_message);
+  dbms_output.put_line(to_char(v_current_timestamp,'yyyy-mm-dd hh24: mi: ss.ff'));
 end;
 /
 -- Удаление деталей платежа
@@ -53,6 +58,7 @@ declare
    v_message varchar2(100 char) := 'Детали платежа удалены по списку id_полей';
    v_current_timestamp timestamp := systimestamp;
 begin
-  dbms_output.put_line(v_message || '. '|| TO_CHAR(v_current_timestamp,'DD-MM-RR HH.MI.SS.FF AM'));
+  dbms_output.put_line(v_message);
+  dbms_output.put_line(to_char(v_current_timestamp,'dd-mm-rr hh.mi.ss.ff am'));
 end;
 /
