@@ -12,6 +12,26 @@ declare
                                                                      t_payment_detail(2,'192.168.101.1'),
                                                                      t_payment_detail(3,'Перевод через Терминал 1'));
 begin
+
+  if v_payment_detail is not empty then
+        
+    for i in v_payment_detail.first..v_payment_detail.last loop
+      
+      if (v_payment_detail(i).field_id is null) then
+        dbms_output.put_line('ID поля не может быть пустым');
+      end if;
+      
+      if (v_payment_detail(i).field_value is null) then
+        dbms_output.put_line('Значение в поле не может быть пустым');
+      end if;
+      
+      dbms_output.put_line('Field_id: '|| v_payment_detail(i).field_id|| '. Value: '||v_payment_detail(i).field_value);    
+    end loop;
+  
+  else
+      dbms_output.put_line('Коллекция не содержит данных'); 
+  end if;
+  
   dbms_output.put_line(v_message ||'. Статус: '|| c_created);
   dbms_output.put_line(to_char(v_current_date, 'yyyy-mm-dd'));
   dbms_output.put_line(v_payment_id);
@@ -81,6 +101,25 @@ declare
    v_payment_detail t_payment_detail_array := t_payment_detail_array(t_payment_detail(2,'192.168.101.2'),
                                                                      t_payment_detail(4,'Проверен через систему "АнтиФрод"'));
 begin
+  if v_payment_detail is not empty then
+        
+    for i in v_payment_detail.first..v_payment_detail.last loop
+      
+      if (v_payment_detail(i).field_id is null) then
+        dbms_output.put_line('ID поля не может быть пустым');
+      end if;
+      
+      if (v_payment_detail(i).field_value is null) then
+        dbms_output.put_line('Значение в поле не может быть пустым');
+      end if;
+      
+      dbms_output.put_line('Field_id: '|| v_payment_detail(i).field_id|| '. Value: '||v_payment_detail(i).field_value);    
+    end loop;
+  
+  else
+      dbms_output.put_line('Коллекция не содержит данных'); 
+  end if;  
+
   dbms_output.put_line(v_message);
   dbms_output.put_line(to_char(v_current_timestamp,'yyyy-mm-dd hh24: mi: ss.ff'));
   dbms_output.put_line(v_payment_id);
@@ -96,11 +135,18 @@ declare
    v_payment_id payment.payment_id%type := 123456785;
    v_delete_payment_detail t_number_array := t_number_array(2,3);
 begin
+   if v_payment_id is null then
+    dbms_output.put_line('ID объекта не может быть пустым');
+   end if;
+   
+   if v_delete_payment_detail is empty then        
+      dbms_output.put_line('Коллекция не содержит данных'); 
+   end if;    
+   
   dbms_output.put_line(v_message);
   dbms_output.put_line(to_char(v_current_timestamp,'dd-mm-rr hh.mi.ss.ff am'));
   dbms_output.put_line(v_payment_id);
-  if v_payment_id is null then
-    dbms_output.put_line('ID объекта не может быть пустым');
-  end if;
+  dbms_output.put_line('Количество удаленных полей: '|| v_delete_payment_detail.count());
+  
 end;
 /
